@@ -82,7 +82,18 @@
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            position: relative;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -20px;
+            right: -20px;
+            bottom: 0;
             background: linear-gradient(45deg, rgba(138, 7, 7, 0.05), transparent);
+            z-index: -1;
         }
 
         section.visible {
@@ -90,15 +101,47 @@
             transform: translateY(0);
         }
 
-        .content-container {
+        #home {
+            background: #8A0707;
+            color: #fff;
+        }
+
+        #home h1 {
+            color: #fff;
+        }
+
+        #home .cta-button {
+            background: #fff;
+            color: #8A0707;
+        }
+
+        #home .cta-button:hover {
+            background: #f0f0f0;
+            transform: translateY(-3px);
+        }
+
+        #about {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+        }
+
+        #about img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        #about .content {
             max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         h1, h2 {
             color: #8A0707;
             margin-bottom: 20px;
+            max-width: 700px;
         }
 
         h1 {
@@ -116,11 +159,13 @@
         }
 
         p {
+            max-width: 700px;
             margin-bottom: 20px;
         }
 
         .cv-list {
             list-style: none;
+            max-width: 700px;
         }
 
         .cv-list li {
@@ -149,16 +194,6 @@
         .cta-button:hover {
             background: #6B0505;
             transform: translateY(-3px);
-        }
-
-        .profile-img {
-            max-width: 100%;
-            height: auto;
-            border: 3px solid #8A0707;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            display: block;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         @media (max-width: 768px) {
@@ -198,10 +233,14 @@
                 font-size: 1.5em;
             }
 
-            .profile-img {
-                max-width: 80%;
-                margin-left: auto;
-                margin-right: auto;
+            #about {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #about img {
+                max-width: 100%;
+                margin-top: 20px;
             }
         }
     </style>
@@ -222,51 +261,41 @@
     </header>
 
     <section id="home">
-        <div class="content-container">
-            <h1>Willkommen</h1>
-            <p>Ich bin Gülten Gizem Fesli, Doktorandin in Soziologie an der Universität Bayreuth mit Schwerpunkt Intersektionalitätsstudien. Meine Arbeit konzentriert sich auf Gewerkschaften, Migration und Pflegearbeit im deutsch-amerikanischen Vergleich.</p>
-            <a href="#contact" class="cta-button">Kontaktieren Sie mich</a>
-        </div>
+        <h1>Willkommen</h1>
+        <p>Ich bin Gülten Gizem Fesli, Doktorandin in Soziologie an der Universität Bayreuth mit Schwerpunkt Intersektionalitätsstudien. Meine Arbeit konzentriert sich auf Gewerkschaften, Migration und Pflegearbeit im deutsch-amerikanischen Vergleich.</p>
+        <a href="#contact" class="cta-button">Kontaktieren Sie mich</a>
     </section>
 
     <section id="about">
-        <div class="content-container">
+        <div class="content">
             <h2>Über mich</h2>
-            <img src="https://via.placeholder.com/300x400?text=Gülten+Gizem+Fesli" alt="Gülten Gizem Fesli" class="profile-img">
-            <p>Geboren 1993, habe ich meinen akademischen Weg mit einem Bachelor in Lehramt (Englisch, Politikwissenschaft, Pädagogik) und einem Master in Soziologie an der Universität Erlangen-Nürnberg (FAU) begonnen. Derzeit promoviere ich an der Universität Bayreuth im Promotionskolleg für Intersektionalitätsstudien und war Visiting Graduate Scholar am Center for Comparative Immigration Studies der University of California, San Diego. Meine Forschung untersucht die Strategien von Gewerkschaften zur Organisation transnationaler Pflegekräfte, mit einem Fokus auf Intersektionalität, Rasse, Klasse und Geschlecht. Betreut werde ich von Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger.</p>
-            <p>Meine akademische Reise begann mit einem Interesse an gesellschaftlichen Strukturen und Machtverhältnissen, die ich während meines Lehramtsstudiums vertiefte. Der Übergang zur Soziologie ermöglichte es mir, diese Themen wissenschaftlich zu erforschen, insbesondere im Kontext von Migration und Arbeit. Während meines Masters an der FAU entwickelte ich ein besonderes Interesse an der Intersektionalität, einem Ansatz, der die Wechselwirkungen von Rasse, Klasse und Geschlecht analysiert. Dies führte mich schließlich zu meinem aktuellen Promotionsprojekt, das sich mit der Organisation transnationaler Pflegekräfte in Deutschland und den USA beschäftigt. Die Dissertation ist die erste vergleichende Studie dieser Art und nutzt einen migrantenzentrierten Ansatz, um die Strategien von Gewerkschaften zu untersuchen. Dabei führe ich Experteninterviews und Erzählinterviews mit Gewerkschaftlern, Pflegekräften und Akteuren der Zivilgesellschaft durch, um die komplexen Machtressourcen und sozialen Dynamiken zu beleuchten.</p>
-            <p>Mein Aufenthalt als Visiting Graduate Scholar in San Diego war eine prägende Erfahrung, die mir ermöglichte, meine Forschung mit internationalen Perspektiven zu bereichern. Dort hatte ich die Gelegenheit, mit führenden Wissenschaftlern im Bereich der Migrationsforschung zusammenzuarbeiten und Einblicke in die amerikanischen Gewerkschaftsstrategien zu gewinnen, die ich nun in meinem Projekt vergleiche. Diese internationale Dimension meiner Arbeit ist besonders wichtig, da sie zeigt, wie unterschiedliche Wohlfahrtsstaaten mit den Herausforderungen der transnationalen Arbeitsmigration umgehen. Neben meiner Forschung bin ich auch als Mitherausgeberin des Buches „Intersectional Knowledges: Roots, Routes and Visions“ tätig, das 2024 veröffentlicht wurde, und habe darin ein Kapitel über Bildung geschrieben. Dieses Werk integriert Stimmen aus dem Globalen Süden und Minderheitenerfahrungen im Globalen Norden, was meine Forschungsperspektive widerspiegelt.</p>
-            <p>Ich sehe meine Arbeit als Beitrag zur Verbesserung der Arbeitsbedingungen und Rechte von Pflegekräften, die oft an den Rand der Gesellschaft gedrängt werden. Die Intersektionalität bietet hierbei einen Rahmen, um die vielschichtigen Diskriminierungen zu verstehen, denen diese Gruppe ausgesetzt ist. Meine Methodik kombiniert qualitative Forschungsmethoden mit einem historischen Blick auf die Entwicklung der Gewerkschaftsbewegung seit dem späten 20. Jahrhundert. Ziel ist es, nicht nur akademische Erkenntnisse zu gewinnen, sondern auch praktische Schlüsse zu ziehen, die Gewerkschaften in Deutschland dabei unterstützen können, erfolgreiche Strategien aus den USA zu adaptieren. Dieser Ansatz erfordert eine enge Zusammenarbeit mit Akteuren vor Ort und eine ständige Reflexion meiner eigenen Position als Forscherin in diesem Feld.</p>
+            <p>Geboren 1993, habe ich meinen akademischen Weg mit einem Bachelor in Lehramt (Englisch, Politikwissenschaft, Pädagogik) und einem Master in Soziologie an der Universität Erlangen-Nürnberg (FAU) begonnen. Derzeit promoviere ich an der Universität Bayreuth im Promotionskolleg für Intersektionalitätsstudien und war Visiting Graduate Scholar am Center for Comparative Immigration Studies der University of California, San Diego.</p>
+            <p>Meine Forschung untersucht die Strategien von Gewerkschaften zur Organisation transnationaler Pflegekräfte, mit einem Fokus auf Intersektionalität, Rasse, Klasse und Geschlecht. Betreut werde ich von Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger.</p>
         </div>
+        <img src="gizem_portrait.jpg" alt="Porträt von Gülten Gizem Fesli">
     </section>
 
     <section id="cv">
-        <div class="content-container">
-            <h2>Curriculum Vitae</h2>
-            <ul class="cv-list">
-                <li><strong>Seit 2020:</strong> Doktorandin im Promotionskolleg für Intersektionalitätsstudien, Universität Bayreuth, Deutschland.</li>
-                <li><strong>2023:</strong> Visiting Graduate Scholar, Center for Comparative Immigration Studies, University of California, San Diego, USA.</li>
-                <li><strong>2018–2020:</strong> Master of Arts in Soziologie, Universität Erlangen-Nürnberg (FAU), Deutschland.</li>
-                <li><strong>2013–2018:</strong> Bachelor of Arts in Lehramt (Englisch, Politikwissenschaft, Pädagogik), Universität Erlangen-Nürnberg (FAU), Deutschland.</li>
-                <li><strong>Betreuerinnen:</strong> Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger.</li>
-            </ul>
-        </div>
+        <h2>Curriculum Vitae</h2>
+        <ul class="cv-list">
+            <li><strong>Seit 2020:</strong> Doktorandin im Promotionskolleg für Intersektionalitätsstudien, Universität Bayreuth, Deutschland.</li>
+            <li><strong>2023:</strong> Visiting Graduate Scholar, Center for Comparative Immigration Studies, University of California, San Diego, USA.</li>
+            <li><strong>2018–2020:</strong> Master of Arts in Soziologie, Universität Erlangen-Nürnberg (FAU), Deutschland.</li>
+            <li><strong>2013–2018:</strong> Bachelor of Arts in Lehramt (Englisch, Politikwissenschaft, Pädagogik), Universität Erlangen-Nürnberg (FAU), Deutschland.</li>
+            <li><strong>Betreuerinnen:</strong> Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger.</li>
+        </ul>
     </section>
 
     <section id="portfolio">
-        <div class="content-container">
-            <h2>Portfolio</h2>
-            <p><strong>Dissertation:</strong> „Trade Union Organizing Strategies for Transnational Care Workers. Germany and the USA Compared“ – Die erste vergleichende Studie zu Gewerkschaftsstrategien für transnationale Pflegekräfte in beiden Ländern.</p>
-            <p><strong>Publikationen:</strong> Mitherausgeberin von „Intersectional Knowledges: Roots, Routes and Visions“ (transcript Verlag, 2024) und Autorin des Kapitels „Education“ darin. Das Buch beleuchtet Machtdynamiken und soziale Strukturen aus intersektionaler Perspektive.</p>
-        </div>
+        <h2>Portfolio</h2>
+        <p><strong>Dissertation:</strong> „Trade Union Organizing Strategies for Transnational Care Workers. Germany and the USA Compared“ – Die erste vergleichende Studie zu Gewerkschaftsstrategien für transnationale Pflegekräfte in beiden Ländern.</p>
+        <p><strong>Publikationen:</strong> Mitherausgeberin von „Intersectional Knowledges: Roots, Routes and Visions“ (transcript Verlag, 2024) und Autorin des Kapitels „Education“ darin. Das Buch beleuchtet Machtdynamiken und soziale Strukturen aus intersektionaler Perspektive.</p>
     </section>
 
     <section id="contact">
-        <div class="content-container">
-            <h2>Kontakt</h2>
-            <p>Für Anfragen, Kooperationen oder weitere Informationen erreichen Sie mich unter meiner E-Mail-Adresse. Ich freue mich auf den Austausch zu meinen Forschungsprojekten und darüber hinaus.</p>
-            <a href="mailto:gizem.fesli@fau.de" class="cta-button">E-Mail senden</a>
-        </div>
+        <h2>Kontakt</h2>
+        <p>Für Anfragen, Kooperationen oder weitere Informationen erreichen Sie mich unter meiner E-Mail-Adresse. Ich freue mich auf den Austausch zu meinen Forschungsprojekten und darüber hinaus.</p>
+        <a href="mailto:gizem.fesli@fau.de" class="cta-button">E-Mail senden</a>
     </section>
 
     <script>
