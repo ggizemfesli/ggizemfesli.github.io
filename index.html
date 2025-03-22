@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gülten Gizem Fesli - Portfolio</title>
     <style>
+        /* Schriftartdefinition hinzufügen */
+        @font-face {
+            font-family: 'EdgecuttingLiteSharp';
+            src: url('fonts/EdgecuttingLiteSharp.woff2') format('woff2'),
+                 url('fonts/EdgecuttingLiteSharp.woff') format('woff'),
+                 url('fonts/EdgecuttingLiteSharp.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -17,6 +27,20 @@
             color: #333;
             background: #f4f4f4;
             overflow-x: hidden;
+            position: relative; /* Für den Gradient-Hintergrund */
+        }
+
+        /* Gradient über volle Breite als Body-Hintergrund */
+        body::before {
+            content: '';
+            position: fixed; /* Fixiert den Gradient über den gesamten Bildschirm */
+            top: 0;
+            left: 0;
+            width: 100vw; /* Volle Breite */
+            height: 100vh; /* Volle Höhe */
+            background: linear-gradient(45deg, rgba(138, 7, 7, 0.05), transparent);
+            z-index: -2; /* Hinter dem Content */
+            pointer-events: none; /* Verhindert Interaktion mit dem Pseudo-Element */
         }
 
         header {
@@ -46,6 +70,7 @@
             font-size: 1.5em;
             font-weight: bold;
             color: #8A0707;
+            font-family: 'EdgecuttingLiteSharp', sans-serif; /* Schriftart für Logo */
         }
 
         .nav-links {
@@ -83,17 +108,6 @@
             transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
             position: relative;
-        }
-
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -20px;
-            right: -20px;
-            bottom: 0;
-            background: linear-gradient(45deg, rgba(138, 7, 7, 0.05), transparent);
-            z-index: -1;
         }
 
         section.visible {
@@ -142,6 +156,7 @@
             color: #8A0707;
             margin-bottom: 20px;
             max-width: 700px;
+            font-family: 'EdgecuttingLiteSharp', sans-serif; /* Schriftart für h1 und h2 */
         }
 
         h1 {
@@ -272,7 +287,7 @@
             <p>Geboren 1993, habe ich meinen akademischen Weg mit einem Bachelor in Lehramt (Englisch, Politikwissenschaft, Pädagogik) und einem Master in Soziologie an der Universität Erlangen-Nürnberg (FAU) begonnen. Derzeit promoviere ich an der Universität Bayreuth im Promotionskolleg für Intersektionalitätsstudien und war Visiting Graduate Scholar am Center for Comparative Immigration Studies der University of California, San Diego.</p>
             <p>Meine Forschung untersucht die Strategien von Gewerkschaften zur Organisation transnationaler Pflegekräfte, mit einem Fokus auf Intersektionalität, Rasse, Klasse und Geschlecht. Betreut werde ich von Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger.</p>
         </div>
-        <img src="gizem_portrait.jpg" alt="Porträt von Gülten Gizem Fesli">
+        <img src="images/portrait_gizem.jpg" alt="Porträt von Gülten Gizem Fesli">
     </section>
 
     <section id="cv">
