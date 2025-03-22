@@ -5,13 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gülten Gizem Fesli - Portfolio</title>
     <style>
-        /* Schriftartdefinition hinzufügen */
+        /* Schriftartdefinitionen */
         @font-face {
             font-family: 'EdgecuttingLiteSharp';
-            src: url('fonts/EdgecuttingLiteSharp.woff2') format('woff2'),
-                 url('fonts/EdgecuttingLiteSharp.woff') format('woff'),
-                 url('fonts/EdgecuttingLiteSharp.ttf') format('truetype');
+            src: url('fonts/edgecutting/EdgecuttingLiteSharp.woff2') format('woff2'),
+                 url('fonts/edgecutting/EdgecuttingLiteSharp.woff') format('woff'),
+                 url('fonts/edgecutting/EdgecuttingLiteSharp.ttf') format('truetype');
             font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Anybody';
+            src: url('fonts/anybody/Anybody-Regular.woff2') format('woff2'),
+                 url('fonts/anybody/Anybody-Regular.woff') format('woff'),
+                 url('fonts/anybody/Anybody-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Anybody';
+            src: url('fonts/anybody/Anybody-Bold.woff2') format('woff2'),
+                 url('fonts/anybody/Anybody-Bold.woff') format('woff'),
+                 url('fonts/anybody/Anybody-Bold.ttf') format('truetype');
+            font-weight: bold;
             font-style: normal;
         }
 
@@ -27,20 +45,7 @@
             color: #333;
             background: #f4f4f4;
             overflow-x: hidden;
-            position: relative; /* Für den Gradient-Hintergrund */
-        }
-
-        /* Gradient über volle Breite als Body-Hintergrund */
-        body::before {
-            content: '';
-            position: fixed; /* Fixiert den Gradient über den gesamten Bildschirm */
-            top: 0;
-            left: 0;
-            width: 100vw; /* Volle Breite */
-            height: 100vh; /* Volle Höhe */
-            background: linear-gradient(45deg, rgba(138, 7, 7, 0.05), transparent);
-            z-index: -2; /* Hinter dem Content */
-            pointer-events: none; /* Verhindert Interaktion mit dem Pseudo-Element */
+            position: relative;
         }
 
         header {
@@ -70,7 +75,7 @@
             font-size: 1.5em;
             font-weight: bold;
             color: #8A0707;
-            font-family: 'EdgecuttingLiteSharp', sans-serif; /* Schriftart für Logo */
+            font-family: 'EdgecuttingLiteSharp', sans-serif;
         }
 
         .nav-links {
@@ -156,7 +161,7 @@
             color: #8A0707;
             margin-bottom: 20px;
             max-width: 700px;
-            font-family: 'EdgecuttingLiteSharp', sans-serif; /* Schriftart für h1 und h2 */
+            font-family: 'EdgecuttingLiteSharp', sans-serif;
         }
 
         h1 {
@@ -176,20 +181,31 @@
         p {
             max-width: 700px;
             margin-bottom: 20px;
+            font-family: 'Anybody', sans-serif;
         }
 
-        .cv-list {
+        .list {
             list-style: none;
             max-width: 700px;
         }
 
-        .cv-list li {
+        .list li {
             margin-bottom: 15px;
             position: relative;
             padding-left: 20px;
+            font-family: 'Anybody', sans-serif; /* Schriftart geändert */
+            font-size: 1em;
+            line-height: 1.4; /* Verbessert die Lesbarkeit */
+            -webkit-font-smoothing: antialiased; /* Reduziert Pixelrauschen */
+            -moz-osx-font-smoothing: grayscale; /* Reduziert Pixelrauschen */
         }
 
-        .cv-list li:before {
+        .list li strong {
+            font-family: 'Anybody', sans-serif; /* Schriftart für fettgedruckten Text */
+            font-weight: bold;
+        }
+
+        .list li:before {
             content: "•";
             color: #8A0707;
             position: absolute;
@@ -204,11 +220,17 @@
             text-decoration: none;
             border-radius: 5px;
             transition: background 0.3s, transform 0.3s;
+            font-family: 'Anybody', sans-serif;
         }
 
         .cta-button:hover {
             background: #6B0505;
             transform: translateY(-3px);
+        }
+
+        #portfolio strong {
+            font-family: 'Anybody', sans-serif; /* Schriftart für fettgedruckten Text */
+            font-weight: bold;
         }
 
         @media (max-width: 768px) {
@@ -292,25 +314,30 @@
 
     <section id="cv">
         <h2>Curriculum Vitae</h2>
-        <ul class="cv-list">
-            <li><strong>Seit 2020:</strong> Doktorandin im Promotionskolleg für Intersektionalitätsstudien, Universität Bayreuth, Deutschland.</li>
-            <li><strong>2023:</strong> Visiting Graduate Scholar, Center for Comparative Immigration Studies, University of California, San Diego, USA.</li>
-            <li><strong>2018–2020:</strong> Master of Arts in Soziologie, Universität Erlangen-Nürnberg (FAU), Deutschland.</li>
-            <li><strong>2013–2018:</strong> Bachelor of Arts in Lehramt (Englisch, Politikwissenschaft, Pädagogik), Universität Erlangen-Nürnberg (FAU), Deutschland.</li>
-            <li><strong>Betreuerinnen:</strong> Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger.</li>
+        <ul class="list">
+            <li><strong>Seit 2023:</strong> Doktorandin im Promotionskolleg für Intersektionalitätsstudien, Universität Bayreuth, Deutschland.<br>Betreuerinnen: Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger.</li>
+            <li><strong>2024-2025:</strong> Visiting Graduate Scholar, Center for Comparative Immigration Studies, University of California, San Diego, USA.</li>
+            <li><strong>2019–2023:</strong> Master of Arts in Soziologie, Universität Erlangen-Nürnberg (FAU), Deutschland.</li>
+            <li><strong>2014–2019:</strong> Bachelor of Arts in Lehramt (Englisch, Politikwissenschaft, Pädagogik), Universität Erlangen-Nürnberg (FAU), Deutschland.</li>
         </ul>
     </section>
 
     <section id="portfolio">
         <h2>Portfolio</h2>
-        <p><strong>Dissertation:</strong> „Trade Union Organizing Strategies for Transnational Care Workers. Germany and the USA Compared“ – Die erste vergleichende Studie zu Gewerkschaftsstrategien für transnationale Pflegekräfte in beiden Ländern.</p>
-        <p><strong>Publikationen:</strong> Mitherausgeberin von „Intersectional Knowledges: Roots, Routes and Visions“ (transcript Verlag, 2024) und Autorin des Kapitels „Education“ darin. Das Buch beleuchtet Machtdynamiken und soziale Strukturen aus intersektionaler Perspektive.</p>
+        <p><strong>Dissertationsprojekt:</strong> „Trade Union Organizing Strategies for Transnational Care Workers. Germany and the USA Compared“ – Die erste vergleichende Studie zu Gewerkschaftsstrategien für transnationale Pflegekräfte in beiden Ländern.</p>
+        <p><strong>Publikationen:</strong></p>
+        <ul class="list">
+            <li><strong>2025 (im Erscheinen)</strong> Fesli, G. G. Gewerkschaftliche Organisierung von Care-Arbeiter*innen in der live-in Betreuung in Deutschland und den USA. English: Trade Union Organizing of Transnational Care Workers in German and US-American live-ins. Forschungsjournal Soziale Bewegungen.</li>
+            <li><strong>2025 (im Erscheinen)</strong> Fesli, G. G. Trade Union Organizing of Transnational Care Workers in Germany and the USA. Labor and Employment Research Association Proceedings of the Seventy-Sixth Annual Meeting (Manhattan, NY, June 26-30, 2024). Madison, WI: Industrial Relations Research Association.</li>
+            <li><strong>2024:</strong> Arndt, S., Duran, N., Faust-Scalisi, M., Fesli, G. G., Kamrath, L. (eds.). Intersectional Knowledges. Roots, Routes and Visions. Bielefeld: transcript.</li>
+            <li><strong>2022:</strong> Altschul, S., Artus, I., Dobrovolski, E., Fesli, G. G., Fischer, A., Geinzer, S., Klassen, E., Sailer-Mva, A. Working Students and Trade Unions. WSI-Mitteilungen, (2), 129-136, Nomos. DOI: 10.5771/0342-300X-2022-2-129</li>
+        </ul>
     </section>
 
     <section id="contact">
         <h2>Kontakt</h2>
         <p>Für Anfragen, Kooperationen oder weitere Informationen erreichen Sie mich unter meiner E-Mail-Adresse. Ich freue mich auf den Austausch zu meinen Forschungsprojekten und darüber hinaus.</p>
-        <a href="mailto:gizem.fesli@fau.de" class="cta-button">E-Mail senden</a>
+        <a href="mailto:gizem.fesli@uni-bayreuth.de" class="cta-button">E-Mail senden</a>
     </section>
 
     <script>
