@@ -33,6 +33,21 @@
             font-style: normal;
         }
 
+        :root {
+            --primary-red: #8A0707;
+            --dark-red: #6B0505;
+            --text-dark: #1a1a1a;
+            --text-light: #555;
+            --bg-light: #fafafa;
+            --bg-white: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(138, 7, 7, 0.12);
+            --shadow-hover: 0 12px 40px rgba(138, 7, 7, 0.18);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -40,69 +55,177 @@
             font-family: Arial, sans-serif;
         }
 
-        body {
-            line-height: 1.6;
-            color: #333;
-            background: #f4f4f4;
-            overflow-x: hidden;
-            position: relative;
+        html {
+            scroll-behavior: smooth;
         }
 
+        body {
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: linear-gradient(to bottom, #fafafa 0%, #f5f5f5 100%);
+            overflow-x: hidden;
+            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Header Styles */
         header {
-            background: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: var(--bg-white);
+            box-shadow: var(--shadow-sm);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: background 0.3s;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
         }
 
         header.scrolled {
             background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-md);
         }
 
         nav {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 24px 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.5em;
+            font-size: 1.6em;
             font-weight: bold;
-            color: #8A0707;
+            color: var(--primary-red);
             font-family: 'EdgecuttingLiteSharp', sans-serif;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+            color: var(--dark-red);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 40px;
         }
 
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 30px;
+            gap: 32px;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: var(--text-dark);
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 0.95em;
+            transition: var(--transition-smooth);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-red);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #8A0707;
+            color: var(--primary-red);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 48px;
+            padding: 10px 18px;
+            border: 2px solid var(--primary-red);
+            border-radius: 0;
+            background: var(--bg-white);
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            font-weight: 600;
+            color: var(--primary-red);
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        .lang-switcher:hover {
+            background: var(--primary-red);
+            color: var(--bg-white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .lang-switcher:active {
+            transform: translateY(0);
+        }
+
+        .mobile-lang-switcher {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-width: 44px;
+            padding: 8px 14px;
+            border: 2px solid var(--primary-red);
+            border-radius: 0;
+            background: var(--bg-white);
+            cursor: pointer;
+            transition: var(--transition-bounce);
+            font-weight: 600;
+            color: var(--primary-red);
+            font-size: 1.1em;
+        }
+
+        .mobile-lang-switcher:hover {
+            background: var(--primary-red);
+            color: var(--bg-white);
+            transform: scale(1.05);
+        }
+
+        .mobile-lang-switcher:active {
+            transform: scale(0.95);
         }
 
         .burger {
             display: none;
             font-size: 1.8em;
             cursor: pointer;
+            color: var(--text-dark);
+            transition: var(--transition-smooth);
         }
 
+        .burger:hover {
+            color: var(--primary-red);
+        }
+
+        /* Section Styles */
         section {
-            padding: 80px 20px;
+            padding: 120px 32px;
             max-width: 1200px;
             margin: 0 auto;
             min-height: 100vh;
@@ -110,8 +233,9 @@
             flex-direction: column;
             justify-content: center;
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
         }
 
@@ -120,164 +244,394 @@
             transform: translateY(0);
         }
 
+        /* Home Section */
         #home {
-            background: #8A0707;
-            color: #fff;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            color: var(--bg-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #home::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, -30px) scale(1.1); }
         }
 
         #home h1 {
-            color: #fff;
+            color: var(--bg-white);
+            font-size: 3em;
+            margin-bottom: 24px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        #home p {
+            animation: fadeInUp 1.2s ease-out;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--bg-white);
         }
 
         #home .cta-button {
-            background: #fff;
-            color: #8A0707;
+            background: var(--bg-white);
+            color: var(--primary-red);
+            animation: fadeInUp 1.4s ease-out;
         }
 
         #home .cta-button:hover {
-            background: #f0f0f0;
-            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* About Section */
         #about {
             display: flex;
             flex-direction: row;
             align-items: center;
-            gap: 40px;
+            gap: 60px;
+            background: var(--bg-white);
+            border-radius: 0;
+            padding: 80px 60px;
+            margin: 60px auto;
+            box-shadow: var(--shadow-md);
         }
 
         #about img {
-            max-width: 300px;
+            max-width: 320px;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition-smooth);
+            object-fit: cover;
+        }
+
+        #about img:hover {
+            transform: scale(1.02) translateY(-4px);
+            box-shadow: var(--shadow-hover);
         }
 
         #about .content {
             max-width: 700px;
         }
 
+        /* Typography */
         h1, h2 {
-            color: #8A0707;
-            margin-bottom: 20px;
-            max-width: 700px;
+            color: var(--primary-red);
+            margin-bottom: 28px;
+            max-width: 800px;
             font-family: 'EdgecuttingLiteSharp', sans-serif;
+            letter-spacing: -0.5px;
         }
 
         h1 {
-            font-size: 2.5em;
-            transition: transform 0.5s ease-out;
+            font-size: 3em;
+            line-height: 1.1;
+            transition: var(--transition-smooth);
         }
 
         h2 {
-            font-size: 2em;
-            transition: transform 0.5s ease-out;
+            font-size: 2.2em;
+            line-height: 1.2;
+            transition: var(--transition-smooth);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-red);
+            border-radius: 2px;
         }
 
         section.visible h1, section.visible h2 {
-            transform: scale(1.03);
+            animation: scaleIn 0.6s ease-out 0.3s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         p {
-            max-width: 700px;
-            margin-bottom: 20px;
+            max-width: 750px;
+            margin-bottom: 24px;
             font-family: 'Anybody', sans-serif;
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: var(--text-light);
         }
 
+        /* List Styles */
         .list {
             list-style: none;
-            max-width: 700px;
+            max-width: 800px;
         }
 
         .list li {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             position: relative;
-            padding-left: 20px;
-            font-family: 'Anybody', sans-serif; /* Schriftart geändert */
-            font-size: 1em;
-            line-height: 1.4; /* Verbessert die Lesbarkeit */
-            -webkit-font-smoothing: antialiased; /* Reduziert Pixelrauschen */
-            -moz-osx-font-smoothing: grayscale; /* Reduziert Pixelrauschen */
+            padding-left: 28px;
+            font-family: 'Anybody', sans-serif;
+            font-size: 1.02em;
+            line-height: 1.7;
+            color: var(--text-light);
+            transition: var(--transition-smooth);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .list li:hover {
+            transform: translateX(4px);
+            color: var(--text-dark);
         }
 
         .list li strong {
-            font-family: 'Anybody', sans-serif; /* Schriftart für fettgedruckten Text */
+            font-family: 'Anybody', sans-serif;
             font-weight: bold;
+            color: var(--text-dark);
         }
 
         .list li:before {
-            content: "•";
-            color: #8A0707;
+            content: "●";
+            color: var(--primary-red);
             position: absolute;
             left: 0;
+            font-size: 1.2em;
+            line-height: 1.4;
+            transition: var(--transition-smooth);
         }
 
+        .list li:hover:before {
+            transform: scale(1.3);
+        }
+
+        .list li a {
+            color: var(--primary-red);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition-smooth);
+        }
+
+        .list li a:hover {
+            border-bottom-color: var(--primary-red);
+        }
+
+        /* Button Styles */
         .cta-button {
             display: inline-block;
-            padding: 10px 20px;
-            background: #8A0707;
-            color: #fff;
+            padding: 14px 32px;
+            background: var(--primary-red);
+            color: var(--bg-white);
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s, transform 0.3s;
+            border-radius: 8px;
+            transition: var(--transition-bounce);
             font-family: 'Anybody', sans-serif;
+            font-weight: 600;
+            font-size: 1em;
+            box-shadow: var(--shadow-md);
+            margin-top: 12px;
         }
 
         .cta-button:hover {
-            background: #6B0505;
-            transform: translateY(-3px);
+            background: var(--dark-red);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .cta-button:active {
+            transform: translateY(-2px);
+        }
+
+        /* CV Section */
+        #cv {
+            background: var(--bg-white);
+            border-radius: 0;
+            padding: 80px 60px;
+            margin: 60px auto;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Portfolio Section */
+        #portfolio {
+            background: var(--bg-white);
+            border-radius: 0;
+            padding: 80px 60px;
+            margin: 60px auto;
+            box-shadow: var(--shadow-md);
         }
 
         #portfolio strong {
-            font-family: 'Anybody', sans-serif; /* Schriftart für fettgedruckten Text */
+            font-family: 'Anybody', sans-serif;
             font-weight: bold;
+            color: var(--text-dark);
         }
 
+        /* Contact Section */
+        #contact {
+            background: var(--bg-white);
+            border-radius: 0;
+            padding: 80px 60px;
+            margin: 60px auto;
+            box-shadow: var(--shadow-md);
+            text-align: left;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .nav-right {
+                gap: 12px;
+            }
+
             .burger {
                 display: block;
             }
 
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background: #fff;
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
+            .mobile-lang-switcher {
                 display: flex;
             }
 
+            .nav-center {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-white);
+                flex-direction: column;
+                padding: 32px 24px;
+                box-shadow: var(--shadow-md);
+                border-radius: 0 0 12px 12px;
+            }
+
+            .nav-center.active {
+                display: flex;
+                animation: slideDown 0.3s ease-out;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 16px;
+                width: 100%;
+            }
+
             .nav-links li {
-                margin: 10px 0;
+                margin: 8px 0;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 12px;
+            }
+
+            .nav-center .lang-switcher {
+                margin-top: 16px;
+            }
+
+            nav {
+                padding: 20px 24px;
             }
 
             section {
-                padding: 60px 15px;
+                padding: 80px 24px;
             }
 
             h1 {
-                font-size: 2em;
+                font-size: 2.2em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+            }
+
+            #home h1 {
+                font-size: 2.5em;
+            }
+
+            #about {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 60px 32px;
+                gap: 40px;
+            }
+
+            #about img {
+                max-width: 100%;
+                margin-top: 0;
+            }
+
+            #cv, #portfolio, #contact {
+                padding: 60px 32px;
+                margin: 40px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
             }
 
             h2 {
                 font-size: 1.5em;
             }
 
-            #about {
-                flex-direction: column;
-                align-items: flex-start;
+            #home h1 {
+                font-size: 2em;
             }
 
-            #about img {
-                max-width: 100%;
-                margin-top: 20px;
+            p, .list li {
+                font-size: 0.95em;
+            }
+
+            .cta-button {
+                padding: 12px 24px;
+                font-size: 0.95em;
             }
         }
     </style>
@@ -285,67 +639,146 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Gülten Gizem Fesli</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">Über mich</a></li>
-                <li><a href="#cv">CV</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-            </ul>
-            <div class="burger">☰</div>
+            <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Gülten Gizem Fesli</div>
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="#home" data-de="Home" data-en="Home">Home</a></li>
+                    <li><a href="#about" data-de="Über mich" data-en="About Me">Über mich</a></li>
+                    <li><a href="#cv" data-de="CV" data-en="CV">CV</a></li>
+                    <li><a href="#portfolio" data-de="Portfolio" data-en="Portfolio">Portfolio</a></li>
+                    <li><a href="#contact" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
+                </ul>
+                <div class="lang-switcher" onclick="toggleLanguage()">
+                    <span id="lang-text">EN</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="mobile-lang-switcher" onclick="toggleLanguage()">
+                    <span id="mobile-lang-text">EN</span>
+                </div>
+                <div class="burger">☰</div>
+            </div>
         </nav>
     </header>
 
     <section id="home">
-        <h1>Willkommen</h1>
-        <p>Ich bin Gülten Gizem Fesli, Doktorandin in Soziologie an der Universität Bayreuth mit Schwerpunkt Intersektionalitätsstudien. Meine Arbeit konzentriert sich auf Gewerkschaften, Migration und Pflegearbeit im deutsch-amerikanischen Vergleich.</p>
-        <a href="#contact" class="cta-button">Kontaktieren Sie mich</a>
+        <h1 data-de="Willkommen" data-en="Welcome">Willkommen</h1>
+        <p data-de="Ich bin Gülten Gizem Fesli, Doktorandin in Soziologie an der Universität Bayreuth mit Schwerpunkt Intersektionalitätsstudien. Meine Arbeit konzentriert sich auf Gewerkschaften, Migration und Pflegearbeit im deutsch-amerikanischen Vergleich." 
+           data-en="I am Gülten Gizem Fesli, a doctoral candidate in Sociology at the University of Bayreuth, specializing in Intersectionality Studies. My work focuses on trade unions, migration, and care work in a German-American comparison.">
+           Ich bin Gülten Gizem Fesli, Doktorandin in Soziologie an der Universität Bayreuth mit Schwerpunkt Intersektionalitätsstudien. Meine Arbeit konzentriert sich auf Gewerkschaften, Migration und Pflegearbeit im deutsch-amerikanischen Vergleich.
+        </p>
+        <a href="#contact" class="cta-button" data-de="Kontaktieren Sie mich" data-en="Contact Me">Kontaktieren Sie mich</a>
     </section>
 
     <section id="about">
         <div class="content">
-            <h2>Über mich</h2>
-            <p>Geboren 1993, habe ich meinen akademischen Weg mit einem Bachelor in Lehramt (Englisch, Politikwissenschaft, Pädagogik) und einem Master in Soziologie an der Universität Erlangen-Nürnberg (FAU) begonnen. Derzeit promoviere ich an der Universität Bayreuth im Promotionskolleg für Intersektionalitätsstudien und war Visiting Graduate Scholar am Center for Comparative Immigration Studies der University of California, San Diego.</p>
-            <p>Meine Forschung untersucht die Strategien von Gewerkschaften zur Organisation transnationaler Pflegekräfte, mit einem Fokus auf Intersektionalität, Race, Klasse und Geschlecht. Betreut werde ich von Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger.</p>
+            <h2 data-de="Über mich" data-en="About Me">Über mich</h2>
+            <p data-de="Geboren 1993, habe ich meinen akademischen Weg mit einem Bachelor in Lehramt (Englisch, Politikwissenschaft, Pädagogik) und einem Master in Soziologie an der Universität Erlangen-Nürnberg (FAU) begonnen. Derzeit promoviere ich an der Universität Bayreuth im Promotionskolleg für Intersektionalitätsstudien und war Visiting Graduate Scholar am Center for Comparative Immigration Studies der University of California, San Diego." 
+               data-en="Born in 1993, I began my academic journey with a Bachelor's in Teaching (English, Political Science, Education) and a Master's in Sociology at the University of Erlangen-Nuremberg (FAU). Currently, I am pursuing my doctorate at the University of Bayreuth in the Graduate School for Intersectionality Studies and was a Visiting Graduate Scholar at the Center for Comparative Immigration Studies at the University of California, San Diego.">
+               Geboren 1993, habe ich meinen akademischen Weg mit einem Bachelor in Lehramt (Englisch, Politikwissenschaft, Pädagogik) und einem Master in Soziologie an der Universität Erlangen-Nürnberg (FAU) begonnen. Derzeit promoviere ich an der Universität Bayreuth im Promotionskolleg für Intersektionalitätsstudien und war Visiting Graduate Scholar am Center for Comparative Immigration Studies der University of California, San Diego.
+            </p>
+            <p data-de="Meine Forschung untersucht die Strategien von Gewerkschaften zur Organisation transnationaler Pflegekräfte, mit einem Fokus auf Intersektionalität, Race, Klasse und Geschlecht. Betreut werde ich von Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger." 
+               data-en="My research examines trade union strategies for organizing transnational care workers, with a focus on intersectionality, race, class, and gender. I am supervised by Prof. Dr. Ingrid Artus and Prof. Dr. Annette Henninger.">
+               Meine Forschung untersucht die Strategien von Gewerkschaften zur Organisation transnationaler Pflegekräfte, mit einem Fokus auf Intersektionalität, Race, Klasse und Geschlecht. Betreut werde ich von Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger.
+            </p>
         </div>
         <img src="images/portrait_gizem.webp" alt="Porträt von Gülten Gizem Fesli">
     </section>
 
     <section id="cv">
-        <h2>Curriculum Vitae</h2>
+        <h2 data-de="Curriculum Vitae" data-en="Curriculum Vitae">Curriculum Vitae</h2>
         <ul class="list">
-            <li><strong>Seit 2023:</strong> Doktorandin im Promotionskolleg für Intersektionalitätsstudien, Universität Bayreuth, Deutschland.<br>Betreuerinnen: Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger.</li>
-            <li><strong>2024-2025:</strong> Visiting Graduate Scholar, Center for Comparative Immigration Studies, University of California, San Diego, USA.</li>
-            <li><strong>2019–2023:</strong> Master of Arts in Soziologie, Universität Erlangen-Nürnberg (FAU), Deutschland.</li>
-            <li><strong>2014–2019:</strong> Bachelor of Arts in Lehramt (Englisch, Politikwissenschaft, Pädagogik), Universität Erlangen-Nürnberg (FAU), Deutschland.</li>
+            <li>
+                <span data-de="<strong>Seit 2023:</strong> Doktorandin im Promotionskolleg für Intersektionalitätsstudien, Universität Bayreuth, Deutschland.<br>Betreuerinnen: Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger." 
+                      data-en="<strong>Since 2023:</strong> Doctoral Candidate in the Graduate School for Intersectionality Studies, University of Bayreuth, Germany.<br>Supervisors: Prof. Dr. Ingrid Artus and Prof. Dr. Annette Henninger.">
+                    <strong>Seit 2023:</strong> Doktorandin im Promotionskolleg für Intersektionalitätsstudien, Universität Bayreuth, Deutschland.<br>Betreuerinnen: Prof. Dr. Ingrid Artus und Prof. Dr. Annette Henninger.
+                </span>
+            </li>
+            <li>
+                <span data-de="<strong>2024-2025:</strong> Visiting Graduate Scholar, Center for Comparative Immigration Studies, University of California, San Diego, USA." 
+                      data-en="<strong>2024-2025:</strong> Visiting Graduate Scholar, Center for Comparative Immigration Studies, University of California, San Diego, USA.">
+                    <strong>2024-2025:</strong> Visiting Graduate Scholar, Center for Comparative Immigration Studies, University of California, San Diego, USA.
+                </span>
+            </li>
+            <li>
+                <span data-de="<strong>2019–2023:</strong> Master of Arts in Soziologie, Universität Erlangen-Nürnberg (FAU), Deutschland." 
+                      data-en="<strong>2019–2023:</strong> Master of Arts in Sociology, University of Erlangen-Nuremberg (FAU), Germany.">
+                    <strong>2019–2023:</strong> Master of Arts in Soziologie, Universität Erlangen-Nürnberg (FAU), Deutschland.
+                </span>
+            </li>
+            <li>
+                <span data-de="<strong>2014–2019:</strong> Bachelor of Arts in Lehramt (Englisch, Politikwissenschaft, Pädagogik), Universität Erlangen-Nürnberg (FAU), Deutschland." 
+                      data-en="<strong>2014–2019:</strong> Bachelor of Arts in Teaching (English, Political Science, Education), University of Erlangen-Nuremberg (FAU), Germany.">
+                    <strong>2014–2019:</strong> Bachelor of Arts in Lehramt (Englisch, Politikwissenschaft, Pädagogik), Universität Erlangen-Nürnberg (FAU), Deutschland.
+                </span>
+            </li>
         </ul>
     </section>
 
     <section id="portfolio">
-        <h2>Portfolio</h2>
-        <p><strong>Dissertationsprojekt:</strong> „Trade Union Organizing Strategies for Transnational Care Workers. Germany and the USA Compared“ – Die erste vergleichende Studie zu Gewerkschaftsstrategien für transnationale Pflegekräfte in beiden Ländern.</p>
-        <p><strong>Publikationen:</strong></p>
+        <h2 data-de="Portfolio" data-en="Portfolio">Portfolio</h2>
+        <p>
+            <span data-de="<strong>Dissertationsprojekt:</strong> „Trade Union Organizing Strategies for Transnational Care Workers. Germany and the USA Compared" – Die erste vergleichende Studie zu Gewerkschaftsstrategien für transnationale Pflegekräfte in beiden Ländern." 
+                  data-en="<strong>Dissertation Project:</strong> "Trade Union Organizing Strategies for Transnational Care Workers. Germany and the USA Compared" – The first comparative study on trade union strategies for transnational care workers in both countries.">
+                <strong>Dissertationsprojekt:</strong> „Trade Union Organizing Strategies for Transnational Care Workers. Germany and the USA Compared" – Die erste vergleichende Studie zu Gewerkschaftsstrategien für transnationale Pflegekräfte in beiden Ländern.
+            </span>
+        </p>
+        <p>
+            <span data-de="<strong>Publikationen:</strong>" data-en="<strong>Publications:</strong>">
+                <strong>Publikationen:</strong>
+            </span>
+        </p>
         <ul class="list">
-            <li><strong>2025:</strong> Fesli, G. G. Gewerkschaftliche Organisierung von Care-Arbeiter*innen in der live-in Betreuung in Deutschland und den USA. English: Trade Union Organizing of Transnational Care Workers in German and US-American live-ins. Forschungsjournal Soziale Bewegungen.</li>
+            <li><strong>2025:</strong> Fesli, G. G. Neukonzeption der Live-in-Betreuung: Eine regulatorische Perspektive auf transnationale Care-Arbeiter*innen in deutschen Live-in-Arrangements. [Reconceptualizing live-in care: A regulatory perspective on transnational care workers in German live-in arrangements] German Institute for Interdisciplinary Social Policy Research (DIFIS). Berlin, DIFIS-Impuls 2025, (8), 1-4. <a href="https://difis.org/publikationen/publikation/117" target="_blank">https://difis.org/publikationen/publikation/117</a></li>
+            <li><strong>2025:</strong> Fesli, G. G. Gewerkschaftliche Organisierung von Care-Arbeiter*innen in der live-in Betreuung in Deutschland und den USA. Forschungsjournal Soziale Bewegungen, 38 (12), 1-26.</li>
+            <li><strong>2025:</strong> Fesli, G. G. Bridging Borders: Gendered Labor and Solidarity at UCLA's Conference, Center for the Study of Women | Barbra Streisand Center: <a href="https://csw.ucla.edu/2025/05/05/bridging-borders-gendered-labor-and-solidarity-at-uclas-conference-center-for-the-study-of-women-barbra-streisand-center/" target="_blank">https://csw.ucla.edu/2025/05/05/bridging-borders-gendered-labor-and-solidarity-at-uclas-conference-center-for-the-study-of-women-barbra-streisand-center/</a></li>
             <li><strong>2025:</strong> Fesli, G. G. Trade Union Organizing of Transnational Care Workers in Germany and the USA. Labor and Employment Research Association Proceedings of the Seventy-Sixth Annual Meeting (Manhattan, NY, June 26-30, 2024). Madison, WI: Industrial Relations Research Association.</li>
-            <li><strong>2024:</strong> Arndt, S., Duran, N., Faust-Scalisi, M., Fesli, G. G., Kamrath, L. (eds.). Intersectional Knowledges. Roots, Routes and Visions. Bielefeld: transcript.</li>
-            <li><strong>2022:</strong> Altschul, S., Artus, I., Dobrovolski, E., Fesli, G. G., Fischer, A., Geinzer, S., Klassen, E., Sailer-Mva, A. Working Students and Trade Unions. WSI-Mitteilungen, (2), 129-136, Nomos. DOI: 10.5771/0342-300X-2022-2-129</li>
+            <li><strong>2024:</strong> Arndt, S., Duran, N., Faust-Scalisi, M., Fesli, G. G., Kamrath, L. Intersectional Knowledges: Roots, Routes and Visions. Bielefeld: transcript. <a href="https://doi.org/10.14361/9783839476536" target="_blank">https://doi.org/10.14361/9783839476536</a></li>
+            <li><strong>2022:</strong> Altschul, S., Artus, I., Dobrovolski, E., Fesli, G. G., Fischer, A., Geinzer, S., Klassen, E., Sailer-Mva, A. Working Students and Trade Unions. WSI-Mitteilungen, (2), 129-136, Nomos. DOI: <a href="https://doi.org/10.5771/0342-300X-2022-2-129" target="_blank">10.5771/0342-300X-2022-2-129</a></li>
         </ul>
     </section>
 
     <section id="contact">
-        <h2>Kontakt</h2>
-        <p>Für Anfragen, Kooperationen oder weitere Informationen erreichen Sie mich unter meiner E-Mail-Adresse. Ich freue mich auf den Austausch zu meinen Forschungsprojekten und darüber hinaus.</p>
-        <a href="mailto:gueltengizem.fesli@gmail.com" class="cta-button">E-Mail senden</a>
+        <h2 data-de="Kontakt" data-en="Contact">Kontakt</h2>
+        <p data-de="Für Anfragen, Kooperationen oder weitere Informationen erreichen Sie mich unter meiner E-Mail-Adresse. Ich freue mich auf den Austausch zu meinen Forschungsprojekten und darüber hinaus." 
+           data-en="For inquiries, collaborations, or further information, you can reach me via email. I look forward to exchanging ideas about my research projects and beyond.">
+           Für Anfragen, Kooperationen oder weitere Informationen erreichen Sie mich unter meiner E-Mail-Adresse. Ich freue mich auf den Austausch zu meinen Forschungsprojekten und darüber hinaus.
+        </p>
+        <a href="mailto:gueltengizem.fesli@gmail.com" class="cta-button" data-de="E-Mail senden" data-en="Send Email">E-Mail senden</a>
     </section>
 
     <script>
+        let currentLang = 'de';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'de' ? 'en' : 'de';
+            // Update both language switchers
+            const newLang = currentLang === 'de' ? 'EN' : 'DE';
+            document.getElementById('lang-text').textContent = newLang;
+            document.getElementById('mobile-lang-text').textContent = newLang;
+            updateContent();
+        }
+
+        function updateContent() {
+            const elements = document.querySelectorAll('[data-de][data-en]');
+            elements.forEach(el => {
+                const content = el.getAttribute(`data-${currentLang}`);
+                if (el.tagName === 'SPAN') {
+                    el.innerHTML = content;
+                } else {
+                    el.textContent = content;
+                }
+            });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = currentLang;
+        }
+
         const burger = document.querySelector('.burger');
-        const navLinks = document.querySelector('.nav-links');
+        const navCenter = document.querySelector('.nav-center');
 
         burger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+            navCenter.classList.toggle('active');
         });
 
         const sections = document.querySelectorAll('section');
@@ -358,8 +791,6 @@
                 const sectionTop = section.getBoundingClientRect().top;
                 if (sectionTop < triggerBottom && sectionTop > -section.offsetHeight) {
                     section.classList.add('visible');
-                } else {
-                    section.classList.remove('visible');
                 }
             });
 
@@ -382,11 +813,29 @@
         }
 
         window.addEventListener('scroll', throttle(handleScroll, 100));
-        window.addEventListener('load', handleScroll);
+        window.addEventListener('load', () => {
+            handleScroll();
+            // Trigger initial animations
+            document.querySelector('#home').classList.add('visible');
+        });
 
-        navLinks.querySelectorAll('a').forEach(link => {
+        document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
+                navCenter.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for all internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
     </script>
